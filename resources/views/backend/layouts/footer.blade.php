@@ -1,3 +1,3 @@
 <footer class="page-footer">
-    <p class="mb-0">Copyright © 2024 hypershop.com.bd, All right reserved.</p>
+    <p class="mb-0">Copyright © {{ date('Y') }} codersujon.com, All right reserved.</p>
 </footer>
