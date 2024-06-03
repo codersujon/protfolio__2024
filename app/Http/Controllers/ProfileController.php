@@ -65,9 +65,12 @@ class ProfileController extends Controller
         $data-> phone = $request->phone;
         $data-> address = $request->address;
         $data->updated_at->now();
-        $data->update();
+        $fire = $data->update(); 
 
-        flash()->flash('success', 'Profile Updated Successfully!');
+        if($fire){
+            sweetalert()->success('Profile Updated Successfully!');
+        }
+
         return Redirect::route('admin.profile');
     }
 
