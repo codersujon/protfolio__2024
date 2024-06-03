@@ -4,10 +4,22 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Http\Controllers\Home\HomeSliderController;
 
 Route::get('/', function () {
     return view('frontend.index');
 });
+
+
+/**
+ * Home Slide
+ */
+Route::middleware('auth')->group(function(){
+    Route::controller(HomeSliderController::class)->group(function(){
+        Route::get('/home/slide', 'edit')->name('home.slide');
+    });
+});
+
 
 Route::get('/dashboard', function () {
     $id = Auth::user()->id;
