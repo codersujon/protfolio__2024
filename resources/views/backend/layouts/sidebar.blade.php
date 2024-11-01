@@ -4,7 +4,7 @@
             <img src="{{ asset('logo') }}/logo.png" class="logo-icon" alt="logo icon" width="50px">
         </div>
         <div>
-            <h4 class="logo-text">Hypershop</h4>
+            <h4 class="logo-text">Protfolio</h4>
         </div>
         <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
         </div>

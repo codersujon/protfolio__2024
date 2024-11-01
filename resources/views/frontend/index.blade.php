@@ -1,8 +1,6 @@
 @extends("frontend.master")
 
 @section('main-content')
-
-
     <!-- banner-area -->
     <section class="banner">
         <div class="container custom-container">
@@ -1088,6 +1086,4 @@
         </div>
     </section>
     <!-- contact-area-end -->
-
-
 @endsection

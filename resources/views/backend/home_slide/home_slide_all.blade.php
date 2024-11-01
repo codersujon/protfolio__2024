@@ -30,8 +30,10 @@
                         <div class="card-body">
                             <h4 class="mb-4">Home Slide Update</h4>
 
-                            <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('slider.update') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
+
+                                <input type="hidden" name="id" value="{{ $homeslide->id }}">
 
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
@@ -64,7 +66,7 @@
 
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <img src="{{ (!empty($homeslide->home_slide))? url('upload/homeslide/'.$homeslide->home_slide): url('upload/No_Image.jpg') }}" class="p-1 rounded-circle" al t="user avatar" width="110" id="showImage">
+                                        <img src="{{ (!empty($homeslide->home_slide))? url($homeslide->home_slide) : url('upload/No_Image.jpg') }}" class="p-1 rounded-circle" al t="user avatar" width="110" id="showImage">
                                     </div>
                                 </div>
 
