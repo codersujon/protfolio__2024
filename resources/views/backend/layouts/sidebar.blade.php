@@ -30,6 +30,17 @@
             </ul>
         </li>
         <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">About Page Setup</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('about.page') }}"><i class="bx bx-right-arrow-alt"></i>About Page</a>
+                </li>
+            </ul>
+        </li>
+        <li>
             <a href="{{ route('logout') }}">
                 <div class="parent-icon"><i class="bx bx-log-out-circle"></i>
                 </div>

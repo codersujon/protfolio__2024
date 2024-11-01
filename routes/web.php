@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Home\AboutController;
+use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Http\Controllers\Home\HomeSliderController;
+
 
 Route::get('/', function () {
     return view('frontend.index');
@@ -18,6 +20,16 @@ Route::middleware('auth')->group(function(){
     Route::controller(HomeSliderController::class)->group(function(){
         Route::get('/home/slide', 'edit')->name('home.slide');
         Route::post('/slider/update', 'update')->name('slider.update');
+    });
+});
+
+/**
+ * About Page
+ */
+
+Route::middleware('auth')->group(function(){
+    Route::controller(AboutController::class)->group(function(){
+        Route::get('/about/page', 'AboutPage')->name('about.page');
     });
 });
 
