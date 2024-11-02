@@ -59,6 +59,10 @@ class HomeSliderController extends Controller
         $slide_id = $request->id;
         $slide_image = HomeSlide::where('id', $slide_id)->value('home_slide');
 
+        /**
+         * Image Has Image File
+         */
+        $save_url = "";
         if($request->hasFile('home_slide')){
             $manager = new ImageManager(new Driver());
             $image = $request->file('home_slide');
@@ -68,34 +72,22 @@ class HomeSliderController extends Controller
             $img->resize(636, 852);
             $img->toPng()->save(base_path('public/upload/home_slide/'. $name_gen));
             $save_url = 'upload/home_slide/' . $name_gen;
-
-            $result = HomeSlide::findOrFail($slide_id)->update([
-                'title' => $request->title,
-                'short_title' => $request->short_title,
-                'home_slide' => $save_url,
-                'video_url' => $request->video_url,
-            ]);
-
-            if($result){
-                sweetalert()->success('Home Slide Updated With Images!');
-            }
-
-            return redirect()->back();
         }else{
-            $result = HomeSlide::findOrFail($slide_id)->update([
-                'title' => $request->title,
-                'short_title' => $request->short_title,
-                'video_url' => $request->video_url,
-            ]);
-
-            if($result){
-                sweetalert()->success('Home Slide Updated Without Image!');
-            }
-
-            return redirect()->back();
+            $save_url = $slide_image;
         }
 
-       
+        $result = HomeSlide::findOrFail($slide_id)->update([
+            'title' => $request->title,
+            'short_title' => $request->short_title,
+            'home_slide' => $save_url,
+            'video_url' => $request->video_url,
+        ]);
+
+        if($result){
+            sweetalert()->success('Home Slide Updated!');
+        }
+
+        return redirect()->back();
     }
 
     /**
