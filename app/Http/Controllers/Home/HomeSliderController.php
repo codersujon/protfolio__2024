@@ -57,14 +57,16 @@ class HomeSliderController extends Controller
     public function update(Request $request)
     {
         $slide_id = $request->id;
+        $slide_image = HomeSlide::where('id', $slide_id)->value('home_slide');
+
         if($request->hasFile('home_slide')){
             $manager = new ImageManager(new Driver());
             $image = $request->file('home_slide');
             $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-
+            @unlink(public_path($slide_image)); // Unlink Previous Image
             $img = $manager->read($image);
             $img->resize(636, 852);
-            $img->toJpeg()->save(base_path('public/upload/home_slide/'. $name_gen));
+            $img->toPng()->save(base_path('public/upload/home_slide/'. $name_gen));
             $save_url = 'upload/home_slide/' . $name_gen;
 
             $result = HomeSlide::findOrFail($slide_id)->update([

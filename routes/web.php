@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function(){
 Route::middleware('auth')->group(function(){
     Route::controller(AboutController::class)->group(function(){
         Route::get('/about/page', 'AboutPage')->name('about.page');
+        Route::post('/about/update', 'AboutUpdate')->name('about.update');
     });
 });
 
