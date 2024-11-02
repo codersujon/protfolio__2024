@@ -26,14 +26,15 @@ Route::middleware('auth')->group(function(){
 /**
  * About Page
  */
-
 Route::middleware('auth')->group(function(){
     Route::controller(AboutController::class)->group(function(){
         Route::get('/about/page', 'AboutPage')->name('about.page');
         Route::post('/about/update', 'AboutUpdate')->name('about.update');
+        
     });
 });
 
+Route::get('/about', [AboutController::class, 'HomeAbout'])->name('home.about');
 
 Route::get('/dashboard', function () {
     $id = Auth::user()->id;
