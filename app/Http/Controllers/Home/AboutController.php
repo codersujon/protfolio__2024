@@ -96,7 +96,7 @@ class AboutController extends Controller
                'multi_image' => $save_url,
                'created_at' => now()
             ]);
-            
+
          } // End Foreach
 
          if($result){
@@ -106,4 +106,13 @@ class AboutController extends Controller
          return redirect()->back();
       } // End If
     } // End Method
+
+
+    /**
+     * All Multi Image
+     */
+    public function AllMultiImage(){
+      $allMultiImages = MultiImage::all();
+      return view('backend.about.about_all_multi_image', compact('allMultiImages'));
+    }
 }

@@ -42,6 +42,9 @@
                 <li> <a href="{{ route('about.multi.image') }}">
                     <i class="bx bx-right-arrow-alt"></i>Add Multi Image</a>
                 </li>
+                <li> <a href="{{ route('all.multi.image') }}">
+                    <i class="bx bx-right-arrow-alt"></i>All Multi Image</a>
+                </li>
             </ul>
         </li>
         <li>

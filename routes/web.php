@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function(){
         Route::post('/about/update', 'AboutUpdate')->name('about.update');
         Route::get('/about/multi/image', 'AboutMultiImage')->name('about.multi.image');
         Route::post('/store/multi/image', 'StoreMultiImage')->name('store.multi.image');
+        Route::get('/all/multi/image', 'AllMultiImage')->name('all.multi.image');
     });
 });
 
