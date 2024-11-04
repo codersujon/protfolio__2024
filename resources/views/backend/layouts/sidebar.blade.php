@@ -36,7 +36,11 @@
                 <div class="menu-title">About Page Setup</div>
             </a>
             <ul>
-                <li> <a href="{{ route('about.page') }}"><i class="bx bx-right-arrow-alt"></i>About Page</a>
+                <li> <a href="{{ route('about.page') }}">
+                    <i class="bx bx-right-arrow-alt"></i>About Page</a>
+                </li>
+                <li> <a href="{{ route('about.multi.image') }}">
+                    <i class="bx bx-right-arrow-alt"></i>Add Multi Image</a>
                 </li>
             </ul>
         </li>

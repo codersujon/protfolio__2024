@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Home;
 
+date_default_timezone_set('Asia/Dhaka');
+use App\Models\MultiImage;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use App\Models\About;
@@ -65,4 +67,43 @@ class AboutController extends Controller
       return view('frontend/about', compact('aboutpage'));
     }
    
+    /**
+     * About Multi Image
+     */
+    public function AboutMultiImage(){
+      return view('backend.about.about_multi_image');
+    }
+
+    /**
+     * Store Multi Image
+     */
+    public function StoreMultiImage(Request $request){
+
+      if($request->hasFile('multi_image')){
+         $images = $request->file('multi_image');
+
+         foreach ($images as $multi_image){
+
+            $manager = new ImageManager(new Driver());
+            $name_gen = hexdec(uniqid()).'.'.$multi_image->getClientOriginalExtension();
+            
+            $img = $manager->read($multi_image);
+            $img->resize(220, 220);
+            $img->toPng()->save(base_path('public/upload/multi/'. $name_gen));
+            $save_url = 'upload/multi/'.$name_gen;
+
+            $result = MultiImage::insert([
+               'multi_image' => $save_url,
+               'created_at' => now()
+            ]);
+            
+         } // End Foreach
+
+         if($result){
+            sweetalert()->success('Multple Image Inserted!');
+         }
+
+         return redirect()->back();
+      } // End If
+    } // End Method
 }
