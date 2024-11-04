@@ -89,7 +89,7 @@
             <div class="user-box dropdown">
                 <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src=" {{ (!empty(Auth::user()->profile_image))? url('upload/profile/'.Auth::user()->profile_image): url('upload/No_Image.jpg') }}" class="user-img"
+                    <img src=" {{ (!empty(Auth::user()->profile_image))? url(Auth::user()->profile_image): url('upload/No_Image.jpg') }}" class="user-img"
                         alt="user avatar">
 
                     <div class="user-info ps-3">

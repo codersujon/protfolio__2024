@@ -29,7 +29,7 @@
                     <div class="card radius-15">
                         <div class="card-body text-center">
                             <div class="p-4 border radius-15">
-                                <img src="{{ (!empty($adminData->profile_image))? url('upload/profile/'.$adminData->profile_image): url('upload/No_Image.jpg') }}" width="110" height="110" class="rounded-circle p-1 bg-primary shadow" alt="{{ $adminData->name }}">
+                                <img src="{{ (!empty($adminData->profile_image))? url($adminData->profile_image): url('upload/No_Image.jpg') }}" width="110" height="110" class="rounded-circle p-1 bg-primary shadow" alt="{{ $adminData->name }}">
                                 <h5 class="mb-0 mt-5">{{ $adminData->name }}</h5>
                                 <p class="mb-3">{{ $adminData->email }}</p>
                                 <div class="d-grid"> <a href="#" class="btn btn-outline-primary radius-15">Contact Me</a>
@@ -77,7 +77,7 @@
 
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <img src="{{ (!empty($adminData->profile_image))? url('upload/profile/'.$adminData->profile_image): url('upload/No_Image.jpg') }}" class="p-1 rounded-circle" al t="user avatar" width="110" id="showImage">
+                                        <img src="{{ (!empty($adminData->profile_image))? url($adminData->profile_image): url('upload/No_Image.jpg') }}" class="p-1 rounded-circle" al t="user avatar" width="110" id="showImage">
                                     </div>
                                 </div>
 

@@ -18,7 +18,7 @@
     <link href="{{ asset('backend') }}/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('backend') }}/assets/css/app.css" rel="stylesheet">
     <link href="{{ asset('backend') }}/assets/css/icons.css" rel="stylesheet">
-    <title>Hypershop - Login</title>
+    <title>Protfolio - Login</title>
 </head>
 
 <body class="bg-login">

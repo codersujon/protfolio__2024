@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -49,22 +51,28 @@ class ProfileController extends Controller
         $data-> name = strtoupper($request->name);
         $data-> username = strtolower($request->username);
 
+        $profile_image = User::where('id', $id)->value('profile_image');
+
         // FOR IMAGE UPDATE
-        $customName ="";
-        if($request->file('profile_image')){
-            $file = $request->file('profile_image');
-            $customName =  date('YmdHi').'.'.$file->getClientOriginalExtension();
-            @unlink(public_path('upload/profile/'.$data->profile_image));
-            $file->move(public_path('upload/profile/'), $customName);
+        $save_url ="";
+        if($request->hasFile('profile_image')){
+            $manager = new ImageManager(new Driver());
+            $image = $request->file('profile_image');
+            $customName =  date('YmdHi').'.'.$image->getClientOriginalExtension();
+            @unlink(public_path($profile_image));
+            $image = $manager->read($image);
+            $image->resize(300, 300);
+            $image->toJpeg()->save(base_path('public/upload/profile/'.$customName));
+            $save_url = 'upload/profile/'.$customName;
         }else{
-            $customName =  $data->profile_image;
+            $save_url =  $profile_image;
         }
 
-        $data-> profile_image = $customName;
+        $data-> profile_image = $save_url;
         $data-> email = strtolower($request->email);
         $data-> phone = $request->phone;
         $data-> address = $request->address;
-        $data->updated_at->now();
+        $data-> updated_at->now();
         $fire = $data->update(); 
 
         if($fire){

@@ -14,7 +14,7 @@
 	<link href="{{ asset('backend') }}/assets/css/bootstrap.min.css" rel="stylesheet">
 	<link href="{{ asset('backend') }}/assets/css/app.css" rel="stylesheet">
 	<link href="{{ asset('backend') }}/assets/css/icons.css" rel="stylesheet">
-	<title>Hypershop - Forgot-password</title>
+	<title>Protfolio - Forgot-password</title>
 </head>
 
 <body class="bg-forgot">
