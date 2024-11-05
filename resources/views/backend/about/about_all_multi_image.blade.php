@@ -1,6 +1,7 @@
 @extends('backend.master')
 
 @section('main-content')
+
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -37,6 +38,7 @@
                                 @php
                                     $i = 1;
                                 @endphp
+
                                 @foreach ($allMultiImages as $item )
                                     <tr>
                                         <td>{{ $i++ }}</td>
@@ -47,9 +49,11 @@
                                             <a href="{{ route('edit.multi.image', $item->id) }}" class="btn btn-primary btn-sm">
                                                 <i class="lni lni-pencil-alt"></i>
                                             </a>
-                                            <a href="{{ route('destroy.multi.image', $item->id) }}" class="btn btn-danger btn-sm">
+                                            
+                                            <button class="btn btn-danger btn-sm deleteImage" data-url="{{ route('destroy.multi.image', $item->id) }}">
                                                 <i class="fadeIn animated bx bx-trash"></i>
-                                            </a>
+                                            </button>
+
                                         </td>
                                     </tr>
                                 @endforeach
@@ -67,4 +71,38 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.querySelectorAll('.deleteImage').forEach(function(deleteButton){
+            
+            deleteButton.addEventListener('click', function(e){
+                e.preventDefault();
+                
+                const deleteUrl = this.getAttribute('data-url');
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!",
+                    cancelButtonText: 'No, cancel!',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // If user confirms, redirect to the delete URL
+                        window.location.href = deleteUrl;
+                    } else {
+                        // If user cancels, show a message
+                        Swal.fire('Cancelled', 'The image was not deleted', 'error');
+                    }
+                });
+
+            });
+
+        });
+    </script>
 @endsection
+

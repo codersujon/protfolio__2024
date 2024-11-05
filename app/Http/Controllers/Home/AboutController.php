@@ -100,7 +100,7 @@ class AboutController extends Controller
          } // End Foreach
 
          if($result){
-            sweetalert()->success('Multple Image Inserted!');
+            sweetalert()->timer(1000)->success('Multple Image Inserted!');
          }
 
          return redirect()->back();
@@ -151,8 +151,23 @@ class AboutController extends Controller
          ]);
 
          if($result){
-            sweetalert()->success('Image Updated!');
+            sweetalert()->timer(1000)->success('Image Updated!');
          }
          return redirect()->route('all.multi.image');
     }
+
+   /**
+    * Destroy Multi Image
+    */
+   public function DestroyMultiImage($id){
+      $multi_image = MultiImage::findOrFail($id);
+      @unlink(public_path($multi_image->multi_image)); // Unlink Previous Image
+      $multi_image->delete();
+
+      if($multi_image){
+         sweetalert()->timer(1000)->success('Image deleted successfully!');
+      }
+      
+      return redirect()->back();
+   }
 }
