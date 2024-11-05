@@ -115,4 +115,44 @@ class AboutController extends Controller
       $allMultiImages = MultiImage::all();
       return view('backend.about.about_all_multi_image', compact('allMultiImages'));
     }
+
+    /**
+     * Edit Multi Image
+     */
+    public function EditMultiImage($id){
+      $image = MultiImage::findOrFail($id);
+      return view('backend.about.edit_multi_image', compact('image'));
+    }
+
+    /**
+     * Update Multi Image
+     */
+    public function UpdateMultiImage(Request $request){
+         $id = $request->id;
+         $multi_image = MultiImage::where('id', $id)->value('multi_image');
+         
+         $save_url = "";
+         if($request->hasFile('multi_image')){
+            $manager = new ImageManager(new Driver());
+            $image = $request->file('multi_image');
+            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            @unlink(public_path($multi_image)); // Unlink Previous Image
+            $img = $manager->read($image);
+            $img->resize(220, 220);
+            $img->toPng()->save(base_path('public/upload/multi/'. $name_gen));
+            $save_url = 'upload/multi/'.$name_gen;
+         }else{
+            $save_url = $multi_image;
+         }
+
+         $result = MultiImage::findOrFail($id)->update([
+            'multi_image' => $save_url,
+            'updated_at' => now()
+         ]);
+
+         if($result){
+            sweetalert()->success('Image Updated!');
+         }
+         return redirect()->route('all.multi.image');
+    }
 }

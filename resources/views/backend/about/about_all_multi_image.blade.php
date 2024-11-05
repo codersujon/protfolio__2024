@@ -44,10 +44,10 @@
                                             <img src="{{ asset($item->multi_image) }}" alt="" width="60px" height="60px">
                                         </td>
                                         <td>
-                                            <a href="" class="btn btn-primary btn-sm">
+                                            <a href="{{ route('edit.multi.image', $item->id) }}" class="btn btn-primary btn-sm">
                                                 <i class="lni lni-pencil-alt"></i>
                                             </a>
-                                            <a href="" class="btn btn-danger btn-sm">
+                                            <a href="{{ route('destroy.multi.image', $item->id) }}" class="btn btn-danger btn-sm">
                                                 <i class="fadeIn animated bx bx-trash"></i>
                                             </a>
                                         </td>
