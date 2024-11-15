@@ -48,6 +48,21 @@
             </ul>
         </li>
         <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Portfolio Setup</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('portfolio.index') }}">
+                    <i class="bx bx-right-arrow-alt"></i>All Portfolio</a>
+                </li>
+                <li> <a href="{{ route('portfolio.create') }}">
+                    <i class="bx bx-right-arrow-alt"></i>Add Portfolio</a>
+                </li>
+            </ul>
+        </li>
+        <li>
             <a href="{{ route('logout') }}">
                 <div class="parent-icon"><i class="bx bx-log-out-circle"></i>
                 </div>

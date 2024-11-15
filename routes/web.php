@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Home\PortfolioController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\ProfileController;
@@ -12,6 +13,23 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 
+
+/**
+ * Portfolio Page
+ */
+
+Route::middleware('auth')->group(function(){
+    Route::controller(PortfolioController::class)->group(function(){
+        Route::get('/portfolio/all', 'index')->name('portfolio.index');
+        Route::get('/portfolio/add', 'create')->name('portfolio.create');
+        Route::post('/portfolio/store', 'store')->name('portfolio.store');
+        Route::get('/portfolio/edit/{id}', 'edit')->name('portfolio.edit');
+        Route::post('/portfolio/update/{id}', 'update')->name('portfolio.update');
+        Route::get('/portfolio/destroy/{id}', 'destroy')->name('portfolio.destroy');
+        Route::get('/portfolio/details/{id}', 'portfolioDetails')->name('portfolio.details');
+
+    });
+});
 
 /**
  * Home Slide
